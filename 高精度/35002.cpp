@@ -39,7 +39,7 @@ int main()
 	for (int i = 0; i < n; i++)
 	{
 		multiply_binary(a, 2, c, lc);
-		memcpy(a, c, sizeof(c)/sizeof(int));
+		memcpy(a, c, sizeof(c));
 		memset(c, 0, sizeof(c));
 	}
 	for (int i = lc - 1; i >= 0; i--)
