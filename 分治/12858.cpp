@@ -3,7 +3,7 @@ using namespace std;
 long long dg(long long a, long long b)
 {
 	long long ret = 1;
-	if (b == 1) return a;
+	if (b == 0) return 1;
 	long long num = dg(a, b / 2);
 	ret=(num%999983)*(num%999983)%999983;
 	if (b % 2 == 0)
