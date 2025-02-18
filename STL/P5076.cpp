@@ -95,6 +95,7 @@ int main()
 	cin >> q;
 	while (q--)
 	{
+		cout << node[1].size; 
 		cin >> op >> x;
 		if (op == 1)cout << rank_z(x, 1) << endl;
 		if (op == 2)cout << find(x, 1) << endl;
