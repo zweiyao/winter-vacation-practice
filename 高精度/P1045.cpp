@@ -1,67 +1,71 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+#include<cmath>
 using namespace std;
-int p,la=1;
-int a[1000005];
+int p, la = 1, lb = 1;
+int a[505], b[505], c[505];
 int main()
 {
 	cin >> p;
 	a[0] = 1;
-	for (int i = 1; i <= p; i++)
+	b[0] = 2;
+	la = p*log10(2) + 1;
+	while (p)
 	{
+		if (p & 1)//a=a*b
+		{//高精乘高精
+			for (int i = 0; i<500; i++)
+			{
+				for (int j = 0; i + j < 500; j++)
+				{
+					c[i + j] += a[i] * b[j];
+				}
+			}
+			int jw = 0;
+			for (int i = 0; i < 500; i++)
+			{
+				c[i] += jw;
+				jw = c[i] / 10;
+				c[i] %= 10;
+			}
+			memcpy(a, c, sizeof(c));
+			memset(c, 0, sizeof(c));
+		}
+
+		//b=b*b
+		for (int i = 0; i < 500; i++)
+		{
+			for (int j = 0; i + j <500; j++)
+			{
+				c[i + j] += b[i] * b[j];
+			}
+		}
 		int jw = 0;
-		for (int j = 0; j < la; j++)
+		for (int i = 0; i < 500; i++)
 		{
-			a[j] =a[j]*2+jw;
-			jw = a[j] / 10;
-			a[j] = a[j] % 10;
+			c[i] += jw;
+			jw = c[i] / 10;
+			c[i] %= 10;
 		}
-		if (jw){
-			la++;
-			a[la - 1] = jw;
-		}
+		memcpy(b, c, sizeof(c));
+		memset(c, 0, sizeof(c));
+		p >>= 1;
 	}
-	a[0]-=1;
-    int count =0;
-    cout<<la<<endl;
-	if (la < 500)
+
+	a[0] -= 1;
+	cout << la << endl;
+	int count = 0;
+	for (int i = 499; i >= 0; i--)
 	{
-		int cnt = 500 - la;
-		while (cnt--)
-		{
-			
-			cout << '0';
-			count++;
-			if(count==50)
-			{
-				count%=50;
-				cout<<endl;
-			}
-		}
-	}
-	if(la<500)
-	{
-	for (int i = la-1; i >= 0; i--)
-	{
+		count++;
 		cout << a[i];
-		count++;
-		if(count==50)
-			{
-				count%=50;
-				cout<<endl;
-			}
-	}
-	}
-	else{
-	for(int i=499;i>=0;i--)
-	{
-		cout<<a[i];
-		count++;
-		if(count==50)
+		if (count == 50)
 		{
-			count%=50;
-			cout<<endl;
+			count = 0;
+			cout << endl;
 		}
 	}
-	}
+
 	return 0;
 }
