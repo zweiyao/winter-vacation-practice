@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 vector<int> g[10005];
-int x[10005],y[10005];
+int x[100005],y[100005];
 int vis[10005];
 void dfs(int u)
 {
@@ -42,8 +42,7 @@ int main()
 			continue;
 		}
 		memset(vis,0,sizeof(vis));
-		for(int i=0;i<=n;i++)
-            g[i].clear();
+		for(int i=0;i<=n;i++)g[i].clear();
 		for(int i=1;i<=m;i++)
 		{
 			g[y[i]].push_back(x[i]);
