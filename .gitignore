@@ -25,6 +25,29 @@ bin-release/
 Debug/
 .vs
 
+# 只提交 cpp 源码，忽略编译产物和其它类型
+*
+!*/
+!*.cpp
+!*.c
+!*.h
+!*.hpp
+!*.md
+!*.txt
+!*.json
+!*.bat
+!.gitignore
+!.gitattributes
+!README*
+
+# 编译产物目录整体忽略（放在 negation 之后以覆盖 !*/）
+**/*.dSYM/
+Debug/
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
+
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
